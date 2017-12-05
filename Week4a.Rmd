@@ -1,0 +1,67 @@
+---
+title: "Week 4 Presentation"
+author: "Noelia Carrillo"
+date: "5 de diciembre de 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plyr)
+library(datasets)
+library(dplyr)
+library(ggplot2)
+```
+
+## Introduction
+
+This presentation is a part of Data Products Course week 4 project.
+
+Project difinition: 
+
+Create a Shiny application and deploy it on Rstudio's servers. Include:
+
+- Some form of input (widget: textbox, radio button, checkbox, ...)
+- Some operation on the ui input in sever.R
+- Some reactive output displayed as a result of server calculations
+
+Prepare a reproducible pitch presentation about your application.
+
+The webpage is hosted in RPubs.
+
+## Shiny application
+
+The data set used is HairEyeColor from datasets package.
+
+The user has to select hair color from a list of values. 
+
+The data is presented by hair color or total values.
+
+
+## Slide with R Output
+
+This is the data of HairEyeColor Dataset.
+
+```{r head, echo = TRUE}
+data.frame(HairEyeColor)
+```
+
+## Slide with R Code 
+
+The following code repoduce the code used in the shinny app in order to generate the plot
+
+```{r data, echo=TRUE}
+data_students <- as.data.frame(HairEyeColor)
+data_students$Hair <- factor(data_students$Hair)
+hair_color <- unique(data_students$Hair)
+hair_color <- factor(c("Total", as.character(hair_color)))
+data_hair <- data_students
+
+data_hair <- ddply(data_hair, .(Eye, Sex), summarize, total=sum(Freq, na.rm = TRUE))
+g <- ggplot(data_hair, aes(x=Eye, y=total, fill=as.factor(Sex))) +
+      geom_bar(stat = "identity", position = "dodge") +
+      ggtitle("Total Students by Eye Color") +
+      xlab("Eye Color") + ylab("Total Students") +
+      guides(fill=guide_legend("Sex")) + theme_bw()
+```
+
