@@ -1,6 +1,6 @@
 # Data Products Week 4 project
-Author: Noelia Carrillo
-Date: 5 December 2017
+- Author: Noelia Carrillo
+- Date: 5 December 2017
 
 ## Shiny app
 
