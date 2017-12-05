@@ -6,6 +6,6 @@
 
 https://noeliadata.shinyapps.io/DPweek4/
 
-## Project documentarion
+## Project documentation
 
 http://rpubs.com/noeliacarrillo/337766
